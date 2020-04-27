@@ -11,7 +11,10 @@ namespace CustomList
         //member variables
         private T[] items;
         //count property
+        public int Count { get; }
+
         //capacity property
+        public int Capacity { get; set; }
 
         //constructor
         public CustomList()

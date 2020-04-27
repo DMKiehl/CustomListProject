@@ -105,8 +105,49 @@ namespace CustomListUnitTest
 
             //assert
             Assert.AreEqual(expected, actual);
+        }
 
+        //Remove Test Methods
+        [TestMethod]
+        public void Remove_RemoveOneItemFromIndexZero_RemainingValueMovesToIndexZero()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            int itemToAdd = 10;
+            int item2ToAdd = 5;
+            int expected = 5;
+            int actual;
 
+            //act
+            testList.Add(itemToAdd);
+            testList.Add(item2ToAdd);
+
+            testList.Remove(10);
+            actual = testList[0];
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveItemFromList_CountOfCustomListIncrementsDown()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            int itemToAdd = 10;
+            int item2ToAdd = 5;
+            int item3ToAdd = 8;
+            int expected = 2;
+            int actual;
+
+            //act
+            testList.Add(itemToAdd);
+            testList.Add(item2ToAdd);
+            testList.Add(item3ToAdd);
+
+            testList.Remove(8);
+            actual = testList.Count;
+
+            //assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
