@@ -151,18 +151,29 @@ namespace CustomListUnitTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Remove_ExceptionThrown()
+        
+        public void Remove_RemoveAValueFromAListWhenAllValueAreTheSame_OneValueIsRemoved()
         {
             //Arrange
             CustomList<int> testList = new CustomList<int>();
-            int index = 3;
+            int itemToAdd = 5;
+            int item2ToAdd = 5;
+            int item3ToAdd = 5;
+            int expected = 2;
+            int actual;
 
             //act
-            testList.Remove(index);
+            testList.Add(itemToAdd);
+            testList.Add(item2ToAdd);
+            testList.Add(item3ToAdd);
+
+            testList.Remove(5);
+            actual = testList.Count;
 
             //assert
-           
+            Assert.AreEqual(expected, actual);
+
+
         }
 
         [TestMethod]
@@ -206,6 +217,28 @@ namespace CustomListUnitTest
             testList.Remove(9);
             testList.Remove(12);
             actual = testList[0];
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveAValueThatIsNotContainedInList_ReturnFalse()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            int itemToAdd = 12;
+            int item2ToAdd = 6;
+            int item3ToAdd = 9;
+            bool expected = false;
+            bool actual;
+
+            //act
+            testList.Add(itemToAdd);
+            testList.Add(item2ToAdd);
+            testList.Add(item3ToAdd);
+
+            actual = testList.Remove(15);
+            
 
             //assert
             Assert.AreEqual(expected, actual);
