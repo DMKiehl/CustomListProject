@@ -149,5 +149,66 @@ namespace CustomListUnitTest
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Remove_ExceptionThrown()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            int index = 3;
+
+            //act
+            testList.Remove(index);
+
+            //assert
+           
+        }
+
+        [TestMethod]
+        public void Remove_RemoveMultipleItemsFromList_CountOfCustomListIncrementsDownMulitple()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            int itemToAdd = 10;
+            int item2ToAdd = 5;
+            int item3ToAdd = 8;
+            int expected = 1;
+            int actual;
+
+            //act
+            testList.Add(itemToAdd);
+            testList.Add(item2ToAdd);
+            testList.Add(item3ToAdd);
+
+            testList.Remove(8);
+            testList.Remove(10);
+            actual = testList.Count;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveMultipleValuesFromList_RemainingValuesMoveDownIndex()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            int itemToAdd = 12;
+            int item2ToAdd = 6;
+            int item3ToAdd = 9;
+            int expected = 6;
+            int actual;
+
+            //act
+            testList.Add(itemToAdd);
+            testList.Add(item2ToAdd);
+            testList.Add(item3ToAdd);
+
+            testList.Remove(9);
+            testList.Remove(12);
+            actual = testList[0];
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
