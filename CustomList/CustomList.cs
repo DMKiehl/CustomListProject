@@ -46,7 +46,16 @@ namespace CustomList
 
             set
             {
-               
+               if (value > 0)
+                {
+                    T[] newItems = new T[value];
+                    if (count > 0)
+                    {
+                        Array.Copy(items, 0, newItems, 0, count);
+                    }
+                    items = newItems;
+                    
+                }
             }
         }
 
@@ -56,16 +65,30 @@ namespace CustomList
             items = new T[4];
         }
 
+        public void CheckCapacity(int num)
+        {
+            if (items.Length < num)
+            {
+                int updateCapacity = items.Length * 2;
+                Capacity = updateCapacity;
+            }
+        }
         //member methods
         public void Add(T item)
         {
+            //check capacity
+            if(count == items.Length)
+            {
+                CheckCapacity(count + 1);
+            }
             
-            count++;
+            items[count++] = item;
+            //count++;
         }
 
         public bool Remove(T item)
         {
-            count--;
+            //count--;
             return false;
         }
 
