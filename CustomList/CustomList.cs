@@ -105,9 +105,31 @@ namespace CustomList
 
         public bool Remove(T item)
         {
-
-            //count--;
+            for(int i = 0; i < count; i++)
+            {
+                if (items[i].Equals(item))
+                {
+                    int index = i;
+                    //items[i] = default(T);
+                    T[] newList = new T[items.Length];
+                    //CopyArray(items, newList);
+                    CondenseArray(items, index, newList);
+                    items = newList;
+                    count--;
+                    return true;
+                }
+            }
+            
             return false;
+        }
+
+        public void CondenseArray(T[] items, int index, T[] newList)
+        {
+           if(index < count)
+            {
+               
+                
+            }
         }
 
     }

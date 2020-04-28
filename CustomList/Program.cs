@@ -28,7 +28,9 @@ namespace CustomList
             newList.Add(10);
             newList.Add(20);
 
-            Console.WriteLine(newList[8]);
+            newList.Remove(1);
+
+            Console.WriteLine(newList[0]);
             Console.ReadLine();
         }
     }
