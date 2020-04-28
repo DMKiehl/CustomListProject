@@ -17,8 +17,19 @@ namespace CustomList
             newList.Add(10);
             newList.Add(10);
             newList.Add(20);
+            newList.Add(1);
+            newList.Add(10);
+            newList.Add(10);
+            newList.Add(10);
+            newList.Add(20);
+            newList.Add(1);
+            newList.Add(10);
+            newList.Add(10);
+            newList.Add(10);
+            newList.Add(20);
 
-            Console.WriteLine(newList[4]);
+            Console.WriteLine(newList[8]);
+            Console.ReadLine();
         }
     }
 }

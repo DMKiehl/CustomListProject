@@ -15,11 +15,14 @@ namespace CustomList
         {
             get 
             { 
-                if(i >= count)
+                if(i < count && i >= 0)
                 {
-                    Console.WriteLine("Argument Out of Range");
+                    return items[i];
                 }
-                return items[i]; 
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
             }
             set 
             { 
@@ -27,7 +30,7 @@ namespace CustomList
             }
         }
         //count property
-        private int count = 0;
+        private int count;
         public int Count
         {
             get
@@ -37,57 +40,72 @@ namespace CustomList
         }
 
         //capacity property
+        private int capacity;
         public int Capacity
         {
             get
             {
-                return items.Length;
+                return capacity;
             }
 
             set
             {
-               if (value > 0)
+                if (value > 0)
                 {
                     T[] newItems = new T[value];
                     if (count > 0)
                     {
-                        Array.Copy(items, 0, newItems, 0, count);
+                        CopyArray(items, newItems);                       
+                        capacity *= 2;
                     }
                     items = newItems;
-                    
                 }
             }
-        }
+
+
+        }       
 
         //constructor
         public CustomList()
         {
-            items = new T[4];
+            count = 0;
+            capacity = 4;
+            items = new T[capacity];
+
         }
 
         public void CheckCapacity(int num)
         {
-            if (items.Length < num)
+            if (capacity < num)
             {
-                int updateCapacity = items.Length * 2;
+                int updateCapacity = capacity * 2;
                 Capacity = updateCapacity;
             }
         }
         //member methods
         public void Add(T item)
         {
-            //check capacity
-            if(count == items.Length)
+            if(count == capacity)
             {
                 CheckCapacity(count + 1);
             }
             
-            items[count++] = item;
-            //count++;
+            items[count] = item;
+            count++;
+        }
+        
+        public void CopyArray(T[] items, T[] newItems)
+        {
+            for(int i = 0; i < items.Length; i++)
+            {
+                newItems[i] = items[i];
+            }
+
         }
 
         public bool Remove(T item)
         {
+
             //count--;
             return false;
         }
