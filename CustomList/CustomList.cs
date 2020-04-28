@@ -10,11 +10,45 @@ namespace CustomList
     {
         //member variables
         private T[] items;
+
+        public T this[int i]
+        {
+            get 
+            { 
+                if(i >= count)
+                {
+                    Console.WriteLine("Argument Out of Range");
+                }
+                return items[i]; 
+            }
+            set 
+            { 
+                items[i] = value; 
+            }
+        }
         //count property
-        public int Count { get; }
+        private int count = 0;
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
+        }
 
         //capacity property
-        public int Capacity { get; set; }
+        public int Capacity
+        {
+            get
+            {
+                return items.Length;
+            }
+
+            set
+            {
+               
+            }
+        }
 
         //constructor
         public CustomList()
@@ -25,11 +59,13 @@ namespace CustomList
         //member methods
         public void Add(T item)
         {
-            items[0] = item;
+            
+            count++;
         }
 
         public bool Remove(T item)
         {
+            count--;
             return false;
         }
 
