@@ -14,9 +14,9 @@ namespace CustomList
 
         public T this[int i]
         {
-            get 
-            { 
-                if(i < count && i >= 0)
+            get
+            {
+                if (i < count && i >= 0)
                 {
                     return items[i];
                 }
@@ -25,9 +25,9 @@ namespace CustomList
                     throw new ArgumentOutOfRangeException();
                 }
             }
-            set 
-            { 
-                items[i] = value; 
+            set
+            {
+                items[i] = value;
             }
         }
         //count property
@@ -167,8 +167,10 @@ namespace CustomList
         public static CustomList<T> operator +(CustomList<T> list, CustomList<T> list2)
         {
             CustomList<T> newList = new CustomList<T>();
-            newList.count = list.count + list2.count;
-            newList = list + list2;
+            foreach (T item in list) newList.Add(item);
+            foreach (T item in list2) newList.Add(item);
+
+            //newList = list + list2;
             return newList;
 
         }

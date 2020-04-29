@@ -34,11 +34,10 @@ namespace CustomList
 
             newList.ToString();
 
-            list3 = newList + list2;
-            //list3= newList + list2;
+            CustomList<int> list3 = newList + list2;
             Console.WriteLine(list3);
 
-            Console.WriteLine(newList[5]);
+            //Console.WriteLine(newList[5]);
             Console.ReadLine();
         }
     }
