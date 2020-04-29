@@ -13,24 +13,24 @@ namespace CustomList
 
             CustomList<int> newList = new CustomList<int>();
             newList.Add(1);
+            newList.Add(2);
+            newList.Add(3);
+            newList.Add(4);
+            newList.Add(5);
+            newList.Add(12);
+            newList.Add(6);
+            newList.Add(7);
+            newList.Add(8);
+            newList.Add(9);
             newList.Add(10);
-            newList.Add(10);
-            newList.Add(10);
-            newList.Add(20);
-            newList.Add(1);
-            newList.Add(10);
-            newList.Add(10);
-            newList.Add(10);
-            newList.Add(20);
-            newList.Add(1);
-            newList.Add(10);
-            newList.Add(10);
-            newList.Add(10);
-            newList.Add(20);
+            newList.Add(14);
+            newList.Add(15);
+            newList.Add(16);
+            newList.Add(27);
 
-            newList.Remove(1);
+            newList.Remove(16);
 
-            Console.WriteLine(newList[0]);
+            Console.WriteLine(newList[13]);
             Console.ReadLine();
         }
     }
