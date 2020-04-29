@@ -10,7 +10,9 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
-
+            CustomList<int> list2 = new CustomList<int>();
+            list2.Add(100);
+            list2.Add(200);
             CustomList<int> newList = new CustomList<int>();
             newList.Add(1);
             newList.Add(2);
@@ -28,9 +30,15 @@ namespace CustomList
             newList.Add(16);
             newList.Add(27);
 
-            newList.Remove(16);
+            newList.Remove(12);
 
-            Console.WriteLine(newList[13]);
+            newList.ToString();
+
+            list3 = newList + list2;
+            //list3= newList + list2;
+            Console.WriteLine(list3);
+
+            Console.WriteLine(newList[5]);
             Console.ReadLine();
         }
     }

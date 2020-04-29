@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
         //member variables
         private T[] items;
@@ -74,6 +75,14 @@ namespace CustomList
 
         }
 
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+            }
+        }
+
         public void CheckCapacity(int num)
         {
             if (capacity < num)
@@ -112,13 +121,14 @@ namespace CustomList
                 if (items[i].Equals(item))
                 {
                     int index = i;
-                    for(int j = index + 1; j <= count; j++)
-                    {
-                        newList[j - 1] = items[j];
-                    }
+                    CompressArray(newList, index);
+                    //for(int j = index + 1; j <= count; j++)
+                    //{
+                    //    newList[j - 1] = items[j];
+                    //}
                     
-                    count--;
-                    items = newList;
+                    //count--;
+                    //items = newList;
                     return true;
                 }
                 newList[i] = items[i];
@@ -127,6 +137,41 @@ namespace CustomList
             return false;
         }
 
-        
+        public void CompressArray(T[] newList, int index)
+        {
+            for (int j = index + 1; j <= count; j++)
+            {
+                newList[j - 1] = items[j];
+            }
+
+            count--;
+            items = newList;
+            //return true;
+        }
+
+        public override string ToString()
+        {
+            string newString = "";
+
+            for (int i = 0; i < count; i++)
+            {
+
+                newString += items[i].ToString();
+
+            }
+            Console.WriteLine(newString);
+            return newString;
+            
+        }
+
+        public static CustomList<T> operator +(CustomList<T> list, CustomList<T> list2)
+        {
+            CustomList<T> newList = new CustomList<T>();
+            newList.count = list.count + list2.count;
+            newList = list + list2;
+            return newList;
+
+        }
+
     }
 }
