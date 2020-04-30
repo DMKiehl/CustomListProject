@@ -13,6 +13,7 @@ namespace CustomList
             CustomList<int> list2 = new CustomList<int>();
             list2.Add(1);
             list2.Add(6);
+            list2.Add(4);
             CustomList<int> newList = new CustomList<int>();
             newList.Add(1);
             newList.Add(2);

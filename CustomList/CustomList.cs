@@ -77,7 +77,7 @@ namespace CustomList
 
         public IEnumerator GetEnumerator()
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i <= count; i++)
             {
                 yield return items[i];
             }
@@ -122,13 +122,7 @@ namespace CustomList
                 {
                     int index = i;
                     CompressArray(newList, index);
-                    //for(int j = index + 1; j <= count; j++)
-                    //{
-                    //    newList[j - 1] = items[j];
-                    //}
-                    
-                    //count--;
-                    //items = newList;
+                  
                     return true;
                 }
                 newList[i] = items[i];
@@ -178,20 +172,22 @@ namespace CustomList
         public static CustomList<T> operator -(CustomList<T> list, CustomList<T> list2)
         {
             CustomList<T> newList = new CustomList<T>();
-            for (int i = 0; i < list2.count; i++)
+            foreach (T item in list2)
             {
-               foreach (T item in list)
-                {
-                    if (item.Equals(list2[i]))
+               foreach (T item2 in list)
+               {
+                    if (item2.Equals(item))
                     {
-                        list.Remove(item);
+                        list.Remove(item2);
                     }
-                }
+               }
 
-                list2.Remove(list2[i]);
+                //list2.Remove(item);
                
             }
-            foreach (T item in list) newList.Add(item);
+            foreach (T item4 in list2) list2.Remove(item4);
+            
+            foreach (T item3 in list) newList.Add(item3);
 
 
             return newList;
