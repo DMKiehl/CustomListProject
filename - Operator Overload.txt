@@ -102,7 +102,7 @@ using System.Threading.Tasks;
 
         public IEnumerator GetEnumerator()
         {
-            for (int i = 0; i <= count; i++)
+            for (int i = 0; i < count; i++)
             {
                 yield return items[i];
             }
@@ -111,26 +111,21 @@ using System.Threading.Tasks;
 //overrides the - operator to subtract on instance of a class from another
         public static CustomList<T> operator -(CustomList<T> list, CustomList<T> list2)
         {
+            //Creates a new CustomList of type <T>
             CustomList<T> newList = new CustomList<T>();
+
+ 	    //Adds each item from list to newList.
+            foreach (T item in list) newList.Add(item);
+            
+            //Loops through the items from list2 and removes any instances of item from newList.
             foreach (T item in list2)
             {
-               foreach (T item2 in list)
-               {
-                    if (item2.Equals(item))
-                    {
-                        list.Remove(item2);
-                    }
-               }
-               
+                newList.Remove(item);
             }
-            foreach (T item4 in list2) list2.Remove(item4);
-            
-            foreach (T item3 in list) newList.Add(item3);
-
 
             return newList;
         }
-     }
+
 
 //Example
 
@@ -138,10 +133,13 @@ using System.Threading.Tasks;
     {
         static void Main(string[] args)
         {
+	    //Creates a new custom list and adds three integers.
             CustomList<int> list2 = new CustomList<int>();
             list2.Add(1);
             list2.Add(6);
             list2.Add(4);
+
+	    //Creates a new Custom list of integers and adds 7 integers to it.
             CustomList<int> newList = new CustomList<int>();
             newList.Add(1);
             newList.Add(2);
@@ -150,8 +148,11 @@ using System.Threading.Tasks;
             newList.Add(5);
             newList.Add(12);
             newList.Add(6);          
-
+	    
+            //Calls the - operator overload method to substracts list 2 from list one. This is all items in list2 and any instances of the items in newList.
             CustomList<int> list3 = newList - list2;
+
+            //Prints out the items in list3
             Console.WriteLine(list3);
 
             Console.ReadLine();

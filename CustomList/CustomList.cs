@@ -77,7 +77,7 @@ namespace CustomList
 
         public IEnumerator GetEnumerator()
         {
-            for (int i = 0; i <= count; i++)
+            for (int i = 0; i < count; i++)
             {
                 yield return items[i];
             }
@@ -158,6 +158,11 @@ namespace CustomList
             
         }
 
+        public void Zip(CustomList<T> list, CustomList<T> list2)
+        {
+
+        }
+
         public static CustomList<T> operator +(CustomList<T> list, CustomList<T> list2)
         {
             CustomList<T> newList = new CustomList<T>();
@@ -172,23 +177,13 @@ namespace CustomList
         public static CustomList<T> operator -(CustomList<T> list, CustomList<T> list2)
         {
             CustomList<T> newList = new CustomList<T>();
+            foreach (T item in list) newList.Add(item);
+            
+
             foreach (T item in list2)
             {
-               foreach (T item2 in list)
-               {
-                    if (item2.Equals(item))
-                    {
-                        list.Remove(item2);
-                    }
-               }
-
-                //list2.Remove(item);
-               
+                newList.Remove(item);
             }
-            foreach (T item4 in list2) list2.Remove(item4);
-            
-            foreach (T item3 in list) newList.Add(item3);
-
 
             return newList;
         }
