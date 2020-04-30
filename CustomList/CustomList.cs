@@ -158,9 +158,24 @@ namespace CustomList
             
         }
 
-        public void Zip(CustomList<T> list, CustomList<T> list2)
+
+        public CustomList<T> Zip(CustomList<T> list)
         {
 
+            if (count != list.count)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            CustomList<T> nextList = new CustomList<T>();
+            for (int i = 0; i < items.Length; i++)
+            {
+
+                nextList.Add(items[i]);
+
+                nextList.Add(list[i]);
+            }
+
+            return nextList;
         }
 
         public static CustomList<T> operator +(CustomList<T> list, CustomList<T> list2)
