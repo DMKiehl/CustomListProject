@@ -21,3 +21,143 @@ Returns the custom list created when subtracting the two lists brought into the 
 Implements
 
 Remove(T item)
+
+
+Example
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+ public class CustomList<T> : IEnumerable
+    {
+        //member variables
+        private T[] items;
+
+        public T this[int i]
+        {
+            get
+            {
+                if (i < count && i >= 0)
+                {
+                    return items[i];
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
+            set
+            {
+                items[i] = value;
+            }
+        }
+        //count property
+        private int count;
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
+        }
+
+        //capacity property
+        private int capacity;
+        public int Capacity
+        {
+            get
+            {
+                return capacity;
+            }
+
+            set
+            {
+                if (value > 0)
+                {
+                    T[] newItems = new T[value];
+                    if (count > 0)
+                    {
+                        CopyArray(items, newItems);                       
+                        capacity *= 2;
+                    }
+                    items = newItems;
+                }
+            }
+
+
+        }       
+
+        //constructor
+        public CustomList()
+        {
+            count = 0;
+            capacity = 4;
+            items = new T[capacity];
+
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i <= count; i++)
+            {
+                yield return items[i];
+            }
+        }
+
+//overrides the - operator to subtract on instance of a class from another
+        public static CustomList<T> operator -(CustomList<T> list, CustomList<T> list2)
+        {
+            CustomList<T> newList = new CustomList<T>();
+            foreach (T item in list2)
+            {
+               foreach (T item2 in list)
+               {
+                    if (item2.Equals(item))
+                    {
+                        list.Remove(item2);
+                    }
+               }
+               
+            }
+            foreach (T item4 in list2) list2.Remove(item4);
+            
+            foreach (T item3 in list) newList.Add(item3);
+
+
+            return newList;
+        }
+     }
+
+//Example
+
+ class Program
+    {
+        static void Main(string[] args)
+        {
+            CustomList<int> list2 = new CustomList<int>();
+            list2.Add(1);
+            list2.Add(6);
+            list2.Add(4);
+            CustomList<int> newList = new CustomList<int>();
+            newList.Add(1);
+            newList.Add(2);
+            newList.Add(3);
+            newList.Add(4);
+            newList.Add(5);
+            newList.Add(12);
+            newList.Add(6);          
+
+            CustomList<int> list3 = newList - list2;
+            Console.WriteLine(list3);
+
+            Console.ReadLine();
+    
+    }
+
+//Output
+
+23512
