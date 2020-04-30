@@ -170,9 +170,31 @@ namespace CustomList
             foreach (T item in list) newList.Add(item);
             foreach (T item in list2) newList.Add(item);
 
-            //newList = list + list2;
+            
             return newList;
 
+        }
+
+        public static CustomList<T> operator -(CustomList<T> list, CustomList<T> list2)
+        {
+            CustomList<T> newList = new CustomList<T>();
+            for (int i = 0; i < list2.count; i++)
+            {
+               foreach (T item in list)
+                {
+                    if (item.Equals(list2[i]))
+                    {
+                        list.Remove(item);
+                    }
+                }
+
+                list2.Remove(list2[i]);
+               
+            }
+            foreach (T item in list) newList.Add(item);
+
+
+            return newList;
         }
 
     }

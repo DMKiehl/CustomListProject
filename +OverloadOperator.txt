@@ -1,5 +1,0 @@
-CustomList<t> operator +() Method
-
-Parameters (the 2 lists to be combined into one list)
-
-CustomList<T> list, CustomList<T> list2

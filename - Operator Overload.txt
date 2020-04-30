@@ -1,0 +1,23 @@
+CustomList<t> operator () Method
+
+
+public static CustomList<T> operator -(CustomList<T> list, CustomList<T> list2)
+
+
+Parameters (the 2 lists to be combined into one list)
+
+CustomList<T> list, CustomList<T> list2
+
+
+
+
+Returns
+
+CustomList<T> newList
+Returns the custom list created when subtracting the two lists brought into the method.
+
+
+
+Implements
+
+Remove(T item)

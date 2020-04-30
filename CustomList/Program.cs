@@ -11,8 +11,8 @@ namespace CustomList
         static void Main(string[] args)
         {
             CustomList<int> list2 = new CustomList<int>();
-            list2.Add(100);
-            list2.Add(200);
+            list2.Add(1);
+            list2.Add(6);
             CustomList<int> newList = new CustomList<int>();
             newList.Add(1);
             newList.Add(2);
@@ -20,25 +20,35 @@ namespace CustomList
             newList.Add(4);
             newList.Add(5);
             newList.Add(12);
-            newList.Add(6);
-            newList.Add(7);
-            newList.Add(8);
-            newList.Add(9);
-            newList.Add(10);
-            newList.Add(14);
-            newList.Add(15);
-            newList.Add(16);
-            newList.Add(27);
+            newList.Add(6);          
 
-            newList.Remove(12);
+            //newList.Remove(12);
 
-            newList.ToString();
+            //newList.ToString();
 
-            CustomList<int> list3 = newList + list2;
+
+            CustomList<int> list3 = newList - list2;
             Console.WriteLine(list3);
 
-            //Console.WriteLine(newList[5]);
             Console.ReadLine();
+
+            //CustomList<string> list2 = new CustomList<string>();
+            //list2.Add("Hello");
+            //list2.Add("World");
+
+            //CustomList<string> newList = new CustomList<string>();
+            //newList.Add("Hello");
+            //newList.Add("World");
+
+            //newList.Remove("Hello");
+
+            //CustomList<int> list3 = newList + list2;
+            //Console.WriteLine(list3);
+
+
+            /* Console.WriteLine(newList[0]);*/
+            
+            
         }
     }
 }
